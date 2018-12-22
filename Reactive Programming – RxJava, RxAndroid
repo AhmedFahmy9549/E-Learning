@@ -5,7 +5,8 @@ Rx  :  (Reactive programming)
  // which can be observed and an action will be taken place when it emits values.
  // You can create data stream out of anything; variable changes, click events, http calls, data storage, errors and what not.
  // When it says asynchronous, that means every code module runs on its own thread thus executing multiple code blocks simultaneously.
- 
+ ________________________________________________________________________________________________________________________
+
    Rx java: 
   // RxJava is Java implementation of Reactive Extension (from Netflix).
   // Basically it’s a library that composes asynchronous events by following Observer Pattern.
@@ -13,6 +14,7 @@ Rx  :  (Reactive programming)
   // transform the data and consumed it by an Observer on any thread.
   // The library offers wide range of amazing operators like map, combine, merge, filter and lot more that can be applied onto data stream.
 
+________________________________________________________________________________________________________________________
 
  RxAndroid:
  // is specific to Android Platform with few added classes on top of RxJava. More specifically,
@@ -56,7 +58,8 @@ Rx  :  (Reactive programming)
        Schedulers.from() – This allows us to create a scheduler from an executor by limiting number of threads to be created. 
        When thread pool is occupied, tasks will be queued.
        
-       
+________________________________________________________________________________________________________________________
+
    Rx Java Basics:
    
       Observable:  is a data stream that do some work and emits data.
@@ -71,7 +74,41 @@ Rx  :  (Reactive programming)
       Schedulers: Schedulers decides the thread on which Observable should emit the data and on
         which Observer should receives the data i.e background thread, main thread etc.,
 
+________________________________________________________________________________________________________________________
+The Basic Steps
 
+1. Create an Observable that emits data. Below we have created an Observable that emits list of animal names. Here just() operator is used to emit few animal names.
+
+2. Create an Observer that listen to Observable. Observer provides the below interface methods to know the the state of Observable.
+    onSubscribe(): Method will be called when an Observer subscribes to Observable.
+    onNext(): This method will be called when Observable starts emitting the data.
+    onError(): In case of any error, onError() method will be called.
+    onComplete(): When an Observable completes the emission of all the items, onComplete() will be called.
+    
+3. Make Observer subscribe to Observable so that it can start receiving the data. Here, you can notice two more methods, observeOn() and subscribeOn().
+    subscribeOn(Schedulers.io()): This tell the Observable to run the task on a background thread.
+    observeOn(AndroidSchedulers.mainThread()): This tells the Observer to receive the data on android UI thread so that you can take any UI related actions.
   
+  ________________________________________________________________________________________________________________________
+
+ Disposable:
+       Disposable is used to dispose the subscription when an Observer no longer wants to listen to Observable.
+       In android disposable are very useful in avoiding memory leaks.
        
-       
+        Disposable is used and calling disposable.dispose() in onDestroy() will un-subscribe the Observer.
+        
+        
+ Multiple Observers and CompositeDisposable:
+        Consider a case where you have multiple Observables and Observers. 
+        Disposing them in Destroy one bye one is a tedious task and it can be error prone as you might forgot to dispose. 
+        In this case we can use CompositeDisposable.
+        
+        CompositeDisposable: Can maintain list of subscriptions in a pool and can dispose them all at once.
+        Usually we call compositeDisposable.clear() in onDestroy() method, but you can call anywhere in the code.
+
+        
+________________________________________________________________________________________________________________________
+
+filter() operator filters the data by applying a conditional statement.
+The data which meets the condition will be emitted and the remaining will be ignored.
+
