@@ -42,3 +42,13 @@ Java File:
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(animalsObserver);
+        
+        
+        
+          @Override
+    protected void onDestroy() {
+        super.onDestroy();
+ 
+        // don't send events once the activity is destroyed
+        disposable.dispose();
+    }
