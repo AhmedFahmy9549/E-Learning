@@ -60,7 +60,26 @@ synchronized :
             }
         }).attachToRecyclerView(recyclerView);
         
-        ------------------------------------------------------------------------------------------------------------------------------------------
+ ------------------------------------------------------------------------------------------------------------------------------------------
         
         Rename of Class in java file :
          shieft+F6
+------------------------------------------------------------------------------------------------------------------------------------------
+    XMl File : 
+
+              Relative Layout :
+              
+                                // From Parent View
+                                android:layout_alignParent Top="true"
+                                android:layout_alignParent Buttom="true"
+                                android:layout_alignParent Right="false"
+                                android:layout_alignParent Left="true"
+                                android:layout_center Horizontal="true"
+                                android:layout_center Vertical="true"
+                                
+                                // Positioning childern relative to other views
+                                android:layout_toLeftOf="@id/" 
+                                android:layout_toRightOf="@id/"
+                                android:layout_above="@id/"
+                                
+                                
