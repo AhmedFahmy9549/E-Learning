@@ -1,9 +1,10 @@
+General Constants : 
 synchronized :
                mean 1 thread at a time can access this method , this way to you dont crate 2 instance of the database in 2 diffrent thread
                at the same time because this can happen in muultithreading enviroment
 
 
-
+------------------------------------------------------------------------------------------------------------------------------------------
          SavedInstanceState: which is a Bundle object containing the activity's previously saved state.
          If the activity has never existed before, the value of the Bundle object is null.
          
@@ -13,17 +14,53 @@ synchronized :
 
                                  Note: onSaveInstanceState() is not called when the user explicitly closes the activity or
                                  in other cases when finish()is called.
-                                 
-                                 
+                                           
           onRestoreInstanceState() : When your activity is recreated after it was previously destroyed, you can recover your saved instance state from the Bundle that the system passes to your activity. Both the onCreate() and onRestoreInstanceState() callback methods receive the same Bundle that contains the instance state information.
          
+------------------------------------------------------------------------------------------------------------------------------------------
+     
          
-         
-         
-         
+   startActivityForResult()  : Sometimes you want to get a result back from an activity when it ends. For example,
+                               you may start an activity that lets the user pick a person in a list of contacts; when it ends,
+                               it returns the person that was selected. To do this, you call the startActivityForResult(Intent, int) method.
+                               
+                               The result comes back through your onActivityResult(int, int, Intent) method.
+      
+      
+        setResult(int):    When a child activity exits, it can call setResult(int) to return data to its parent.
+                           The child activity must always supply a result code, which can be the standard results RESULT_CANCELED,
+                           RESULT_OK, or any custom values starting at RESULT_FIRST_USER. In addition, 
+                           the child activity can optionally return an Intent object containing any additional data it wants. 
+      
+------------------------------------------------------------------------------------------------------------------------------------------
+   Activity Life Cycle :
          Process state:
-         
+       
          Foreground (having or about to get focus)	 :   	Created - Started - Resumed
          Background (lost focus)	                   :    Paused
          Background (not visible)	                   :    Stopped              
          Empty                                       :    Destroyed
+------------------------------------------------------------------------------------------------------------------------------------------
+
+  Classes: 
+  
+      \\ this class for  Move and Swiped RecyclerView 
+      
+         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+
+                viewModel.delete(adapter.getNoteAt(viewHolder.getAdapterPosition()));
+                Toast.makeText(MainActivity.this, "Note Deleted", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(recyclerView);
+        
+        ------------------------------------------------------------------------------------------------------------------------------------------
+        
+        Rename of Class in java file :
+         shieft+F6
