@@ -1,3 +1,29 @@
 synchronized :
                mean 1 thread at a time can access this method , this way to you dont crate 2 instance of the database in 2 diffrent thread
                at the same time because this can happen in muultithreading enviroment
+
+
+
+         SavedInstanceState: which is a Bundle object containing the activity's previously saved state.
+         If the activity has never existed before, the value of the Bundle object is null.
+         
+          
+          onSaveInstanceState() : As your activity begins to stop, the system calls the onSaveInstanceState() method so your activity can save state information to an instance state bundle. The default implementation of this method saves transient information about the state of the activity's view hierarchy, such as the text in an EditText widget or the scroll position of a ListView widget.
+                                  To save additional instance state information for your activity, you must override onSaveInstanceState() and add key-value pairs to the Bundle object that is saved in the event that your activity is destroyed unexpectedly. If you override onSaveInstanceState(), you must call the superclass implementation if you want the default implementation to save the state of the view hierarchy
+
+                                 Note: onSaveInstanceState() is not called when the user explicitly closes the activity or
+                                 in other cases when finish()is called.
+                                 
+                                 
+          onRestoreInstanceState() : When your activity is recreated after it was previously destroyed, you can recover your saved instance state from the Bundle that the system passes to your activity. Both the onCreate() and onRestoreInstanceState() callback methods receive the same Bundle that contains the instance state information.
+         
+         
+         
+         
+         
+         Process state:
+         
+         Foreground (having or about to get focus)	 :   	Created - Started - Resumed
+         Background (lost focus)	                   :    Paused
+         Background (not visible)	                   :    Stopped              
+         Empty                                       :    Destroyed
