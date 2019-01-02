@@ -25,6 +25,19 @@ synchronized :
                     The IntentService is used to perform a certain task in the background. Once done, the instance of IntentService terminates itself automatically. An example for its usage would be downloading certain resources from the internet.
                     The IntentService class offers the onHandleIntent() method which will be asynchronously called by the Android system.
          
+         
+         
+         
+         If the service should be communicating back to the activity,it can receive an object of type Messenger via the Intent data it receives from the activity.
+         If the Messenger is bound to a Handler in the activity, the service can send objects of type Message to the activity.
+         
+         Messenger also provides the method getBinder() which allows passing a Messenger to the activity. The activity can therefore send Messages to the service.
+         
+     
+     Android Interface Definition Language AIDL :
+                                                  To bind to a service which runs in a different process, you need to use Inter Process Communication (IPC) to community your the data. To do so, you need to create a AIDL file which looks similar to a Java interface, but ends with the .aidl file extension and is only allowed to extend other AIDL files.
+                                                  This approach is required if you need to bind to a service running in another process, i.e., if your service is consumed by other Android applications.
+     
                  
 ------------------------------------------------------------------------------------------------------------------------------------------
          SavedInstanceState: which is a Bundle object containing the activity's previously saved state.
