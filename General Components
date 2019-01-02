@@ -2,8 +2,30 @@ General Constants :
 synchronized :
                mean 1 thread at a time can access this method , this way to you dont crate 2 instance of the database in 2 diffrent thread
                at the same time because this can happen in muultithreading enviroment
+ ------------------------------------------------------------------------------------------------------------------------------------------
+    service :    
+              A service is a component which runs in the background without direct interaction with the user. As the service has no user interface, it is not bound to the lifecycle of an activity.
+              Services are used for repetitive and potentially long running operations, i.e., Internet downloads, checking for new data, data processing, updating content providers and the like.
+
+            onStartCommand()  : Once the service is started, the onStartCommand(intent) method in the service is called. It passes in the Intent object from the startService(intent) call.
+                                If startService(intent) is called while the service is running, its onStartCommand() is also called. Therefore your service needs to be prepared that onStartCommand() can be called several times
+                                
+         Service restart behavior:
+                                  Service.START_STICKY  : 	Service is restarted if it gets terminated. Intent data passed to the onStartCommand method is null. Used for services which manages their own state and do not depend on the Intent data.
+
+                                  Service.START_NOT_STICKY  :  Service is not restarted. Used for services which are periodically triggered anyway. The service is only restarted if the runtime has pending startService() calls since the service termination.
+
+                                  Service.START_REDELIVER_INTENT  : Similar to Service.START_STICKY but the original Intent is re-delivered to the onStartCommand method.
 
 
+           Note: You can check if the service was restarted via the Intent.getFlags() method. START_FLAG_REDELIVERY (in case the service was started with Service.START_REDELIVER_INTENT) or START_FLAG_RETRY (in case the service was started with Service.START_STICKY) is passed
+
+
+    IntentServices:       
+                    The IntentService is used to perform a certain task in the background. Once done, the instance of IntentService terminates itself automatically. An example for its usage would be downloading certain resources from the internet.
+                    The IntentService class offers the onHandleIntent() method which will be asynchronously called by the Android system.
+         
+                 
 ------------------------------------------------------------------------------------------------------------------------------------------
          SavedInstanceState: which is a Bundle object containing the activity's previously saved state.
          If the activity has never existed before, the value of the Bundle object is null.
