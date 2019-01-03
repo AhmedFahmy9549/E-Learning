@@ -37,8 +37,12 @@ synchronized :
      Android Interface Definition Language AIDL :
                                                   To bind to a service which runs in a different process, you need to use Inter Process Communication (IPC) to community your the data. To do so, you need to create a AIDL file which looks similar to a Java interface, but ends with the .aidl file extension and is only allowed to extend other AIDL files.
                                                   This approach is required if you need to bind to a service running in another process, i.e., if your service is consumed by other Android applications.
-     
-                 
+------------------------------------------------------------------------------------------------------------------------------------------
+    JobScheduler:
+                   Used where you will want to run a task at a later point in time or under certain conditions, such as when a device is plugged into a power source or connected to a Wi-Fi network
+                   The JobScheduler API performs an operation for your application when a set of predefined conditions are met
+    
+      
 ------------------------------------------------------------------------------------------------------------------------------------------
          SavedInstanceState: which is a Bundle object containing the activity's previously saved state.
          If the activity has never existed before, the value of the Bundle object is null.
