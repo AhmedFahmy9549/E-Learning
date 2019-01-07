@@ -42,7 +42,19 @@ synchronized :
                    Used where you will want to run a task at a later point in time or under certain conditions, such as when a device is plugged into a power source or connected to a Wi-Fi network
                    The JobScheduler API performs an operation for your application when a set of predefined conditions are met
     
-      
+                    JobScheduler is implemented in the platform, which allows it to collect information about jobs
+                    that need to run across all apps. This information is used to schedule jobs to run at, or around, the same time.
+                    Batching job execution in this fashion allows the device to enter and stay in sleep states longer, preserving battery life.
+                    
+                    
+    AlarmManager:
+                  The AlarmManager API is another option that the framework provides for scheduling tasks.
+                  This API is useful in cases in which an app needs to post a notification or set off an alarm at a very specific time.
+                  You should only use this API for tasks that must execute at a specific time, but don't require the other,
+                  more robust, execution conditions that JobScheduler allows you to specify, such as device idle and charging detect.
+
+
+                
 ------------------------------------------------------------------------------------------------------------------------------------------
          SavedInstanceState: which is a Bundle object containing the activity's previously saved state.
          If the activity has never existed before, the value of the Bundle object is null.
