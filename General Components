@@ -2,6 +2,10 @@ General Constants :
 synchronized :
                mean 1 thread at a time can access this method , this way to you dont crate 2 instance of the database in 2 diffrent thread
                at the same time because this can happen in muultithreading enviroment
+               
+ In Java 
+ 
+        Private Constructor : for Prevent developer to get object of class , used only to use Puplic static variables and methods.
  ------------------------------------------------------------------------------------------------------------------------------------------
     service :    
               A service is a component which runs in the background without direct interaction with the user. As the service has no user interface, it is not bound to the lifecycle of an activity.
@@ -38,23 +42,33 @@ synchronized :
                                                   To bind to a service which runs in a different process, you need to use Inter Process Communication (IPC) to community your the data. To do so, you need to create a AIDL file which looks similar to a Java interface, but ends with the .aidl file extension and is only allowed to extend other AIDL files.
                                                   This approach is required if you need to bind to a service running in another process, i.e., if your service is consumed by other Android applications.
 ------------------------------------------------------------------------------------------------------------------------------------------
-    JobScheduler:
+    JobScheduler:     in Android 5.0(API level 21).
                    Used where you will want to run a task at a later point in time or under certain conditions, such as when a device is plugged into a power source or connected to a Wi-Fi network
                    The JobScheduler API performs an operation for your application when a set of predefined conditions are met
     
                     JobScheduler is implemented in the platform, which allows it to collect information about jobs
                     that need to run across all apps. This information is used to schedule jobs to run at, or around, the same time.
-                    Batching job execution in this fashion allows the device to enter and stay in sleep states longer, preserving battery life.
+                    Batching job execution in this fashion allows the device to enter and stay in sleep states longer, preserving battery life
+                    JobScheduler by registering jobs 
                     
+                    this API can be used to schedule everything that is not time critical for the user.
                     
     AlarmManager:
                   The AlarmManager API is another option that the framework provides for scheduling tasks.
                   This API is useful in cases in which an app needs to post a notification or set off an alarm at a very specific time.
                   You should only use this API for tasks that must execute at a specific time, but don't require the other,
                   more robust, execution conditions that JobScheduler allows you to specify, such as device idle and charging detect.
+                  
+                    Use Case: Let’s say we want to perform a task after 1 hour or every 1 hour. 
+                    In this case AlarmManager works perfectly for us. But this API is not suitable in a situations like
+                    perform the above task only when network is available or when device is not charging.
+
+       Note: When application is running and we want to schedule or run a task at a specific time then 
+             it is recommended to use Handler class in conjunction with Timer and Thread.
+             Instead of using Alarm Manger, Job Scheduler etc. it is easier and much more efficient to use Handler.
+                    
 
 
-                
 ------------------------------------------------------------------------------------------------------------------------------------------
          SavedInstanceState: which is a Bundle object containing the activity's previously saved state.
          If the activity has never existed before, the value of the Bundle object is null.
