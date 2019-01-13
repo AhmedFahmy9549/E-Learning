@@ -7,6 +7,25 @@ synchronized :
  
         Private Constructor : for Prevent developer to get object of class , used only to use Puplic static variables and methods.
 ------------------------------------------------------------------------------------------------------------------------------------------
+        
+      Intents and Intent Filters :
+          
+          is a messaging object you can use to request an action from another app component, Although intents facilitate communication between components in several ways,
+          there are three fundamental use cases:
+          * Starting an activity
+          * Starting a service
+          * Delivering a broadcast
+
+          There are two types of intents:
+          
+            * Explicit intents : 
+                                You'll typically use an explicit intent to start a component in your own app, because you know the class name of the activity or service you want to start.
+
+            * Implicit intents:
+                                do not name a specific component, but instead declare a general action to perform, which allows a component from another app to handle it. For example, if you want to show the user a location on a map, 
+                                you can use an implicit intent to request that another capable app show a specified location on a map.
+      
+------------------------------------------------------------------------------------------------------------------------------------------
 Broadcast Receivers:
                     They handle communication between Android OS and applications.
                     
