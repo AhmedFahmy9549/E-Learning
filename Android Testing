@@ -40,6 +40,27 @@ Unit testing:
 
        - local unit test - which runs on the JVM
        - Android unit test - which runs on the Android runtime
+       
+       
 
+       Instrumented unit:
+                        tests are unit tests that run on Android devices and emulators instead of running on the Java virtual machine.
+                        These tests have access to the real device and its resources and are useful to unit test functionality which cannot be easily mocked by mocking frameworks
+                        
+                   An instrumentation-based test class allows you to send key events (or touch events) to the application under test.
+                   With user interface testing framework like Espresso, the developer rarely has to use the instrumentation API directly.
+                        
+                        
+        *  How the Android system executes tests?             
+             The InstrumentationTestRunner is the base test runner for Android tests. This test runner starts and loads the test methods. 
+             Via the instrumentation API it communicates with the Android system. If you start a test for an Android application, 
+             the Android system kills any process of the application under test and then loads a new instance. 
+             It does not start the application, this is the responsibility of the test methods.
+             The test method controls the life cycle of the components of the application.     
+      
+               The test runner also calls the onCreate() method of the application and activity under test during its initialization.
 
-    
+         * Mocking objects in Android:
+                       he mocking framework Mockito can also be used for instrumentation tests.
+                       This allows you to replace parts of the Android system which are not interesting for the test.
+                       The Android framework provided in the past specialized mocking classes but these are not necessary anymore.
